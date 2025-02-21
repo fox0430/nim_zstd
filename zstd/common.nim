@@ -28,7 +28,7 @@ proc parentDirHost*(path: string): string =
     result = "."
 
 const cur_src_path = currentSourcePath.parentDirHost
-const zstd_path {.strdefine.}: string = joinPathHost(cur_src_path, "deps/zstd")
+const zstd_path {.strdefine.}: string = joinPathHost(cur_src_path, "deps/zstd/single_file")
 
 when defined(useExternalZstd):
   {.passL: "-lzstd".}
