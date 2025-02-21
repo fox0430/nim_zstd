@@ -1,11 +1,15 @@
-
 name: Test
 
 on:
   push:
     branches: [ develop, master ]
   pull_request:
-    branches: [ develop, master ]
+    paths:
+      - '.github/workflows/test.yml'
+      - 'example/**'
+      - 'zstd.nimble'
+      - 'zstd/**'
+      - 'tests/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request_target' && github.head_ref || github.ref }}
@@ -17,19 +21,25 @@ defaults:
 jobs:
   test:
     timeout-minutes: 5
-    runs-on: ubuntu-latest
     strategy:
       matrix:
         nim:
+          - '1.2.x'
           - '1.4.x'
           - '1.6.x'
+          - '2.0.x'
           - 'stable'
+          - 'devel'
+        os:
+          - ubuntu-latest
+          - macOS-latest
     name: Nim ${{ matrix.nim }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: jiro4989/setup-nim-action@v1
+      - uses: actions/checkout@v4
+      - uses: jiro4989/setup-nim-action@v2
         with:
           nim-version: ${{ matrix.nim }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
       - run: nimble test --verbose
 
 
