@@ -34,7 +34,7 @@ jobs:
           - ubuntu-latest
           - macOS-latest
 
-    name: Test on ${{ matrix.nim-version }} (${{ matrix.os }})
+    name: Test on ${{ matrix.nim }} (${{ matrix.os }})
     steps:
       - uses: actions/checkout@v4
       - uses: jiro4989/setup-nim-action@v2
