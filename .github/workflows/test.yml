@@ -20,7 +20,7 @@ defaults:
 
 jobs:
   test:
-    timeout-minutes: 5
+    timeout-minutes: 15
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -30,6 +30,7 @@ jobs:
           - '1.6.x'
           - '2.0.x'
           - 'stable'
+          - 'devel'
         os:
           - 'ubuntu-latest'
           - 'macOS-latest'
