@@ -3,7 +3,7 @@
 Nim bindings for [zstd](https://github.com/facebook/zstd)
 
 ```bash
-$ nimble install zstd
+$ nimble install https://github.com/fox0430/nim_zstd
 ```
 
 ## Simple API
