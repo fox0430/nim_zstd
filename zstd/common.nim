@@ -28,13 +28,14 @@ proc parentDirHost*(path: string): string =
     result = "."
 
 const cur_src_path = currentSourcePath.parentDirHost
-const zstd_path {.strdefine.}: string = joinPathHost(cur_src_path, "deps/zstd/single_file")
+const zstd_path {.strdefine.}: string = joinPathHost(cur_src_path, "deps/zstd")
+const zstd_single_file_path {.strdefine.}: string = joinPathHost(zstd_path, "single_file/zstd.c")
 
 when defined(useExternalZstd):
   {.passL: "-lzstd".}
 else:
   {.passC: "-I" & zstd_path.}
-  {.compile: joinPathHost(zstd_path, "zstd.c").}
+  {.compile: zstd_single_file_path.}
 
 let dep_header_name* {.compileTime.} = "zstd.h"
 {.pragma: c_dep_type, header: dep_header_name, bycopy.}
