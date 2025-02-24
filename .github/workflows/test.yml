@@ -33,6 +33,7 @@ jobs:
           - 'devel'
         os:
           - 'ubuntu-latest'
+          - 'macos-latest'
 
     name: Test on ${{ matrix.nim }} (${{ matrix.os }})
     steps:
