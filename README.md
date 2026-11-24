@@ -2,6 +2,12 @@
 
 Nim bindings for [zstd](https://github.com/facebook/zstd)
 
+This package wraps the zstd C library for fast, lossless compression and decompression in Nim.
+It provides a simple one-shot API, reusable contexts with optional dictionaries, and stream-based processing.
+The zstd source is bundled and compiled by default; a system-installed zstd can be used instead.
+
+Zstd v1.6.0
+
 ```bash
 $ nimble install https://github.com/fox0430/nim_zstd
 ```
